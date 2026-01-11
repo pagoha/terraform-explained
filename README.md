@@ -68,6 +68,10 @@ terraform-explained/
 
 ## Phase Roadmap
 
+![Terraform Explained Zero-to-Hero Roadmap](assets/terraform-zero-to-hero-roadmap.png)
+
+*Visual roadmap illustrating the sequential phases from setup to hero challenges.*
+
 ### Phase 0: Setup & Orientation
 
 * Install Terraform and AWS CLI
