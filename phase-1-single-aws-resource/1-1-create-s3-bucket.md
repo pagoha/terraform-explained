@@ -2,9 +2,32 @@
 
 ## Overview
 
-Learn how to create an S3 bucket using Terraform with additional properties like versioning and tags.
+Learn how to create an **S3 bucket** using Terraform with additional properties like **versioning** and **tags**.
+This demo builds on the Phase 0 workflow and shows how to add metadata to AWS resources.
 
-## Code Example
+---
+
+## Steps
+
+### 1. Navigate to Your Terraform Working Folder
+
+**Windows (PowerShell):**
+
+```powershell
+cd C:\TerraformProjects
+```
+
+**macOS / Linux (Terminal):**
+
+```bash
+cd ~/TerraformProjects
+```
+
+---
+
+### 2. Create Terraform Configuration File
+
+Create a file named `main.tf` with the following content:
 
 ```hcl
 provider "aws" {
@@ -12,7 +35,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "example" {
-  bucket = "terraform-demo-bucket-unique-001"
+  bucket = "terraform-demo-bucket-unique-001" # must be globally unique
   acl    = "private"
 
   versioning {
@@ -26,25 +49,38 @@ resource "aws_s3_bucket" "example" {
 }
 ```
 
-Commands:
+**Tip:** Replace `unique-001` with a unique number or initials to avoid bucket name collisions.
+
+---
+
+### 3. Run Terraform Workflow
 
 ```bash
-terraform init
-terraform plan
-terraform apply
-terraform destroy
+terraform init    # initialize working directory
+terraform plan    # preview resource creation
+terraform apply   # create the S3 bucket
+terraform state list  # verify resource in state
+terraform destroy # remove the bucket
 ```
 
-## Expected Output
+**Optional Verification with AWS CLI:**
 
-* `terraform plan` shows 1 S3 bucket with versioning and tags
-* `terraform apply` creates the bucket with specified properties
-* `terraform state list` shows `aws_s3_bucket.example`
-* `terraform destroy` deletes the bucket safely
+```bash
+aws s3 ls
+```
+
+Expected output: Your bucket should appear in the list.
+
+---
 
 ## Insights
 
-* **Why this demo exists:** Demonstrates adding properties and metadata to a resource.
-* **Key points:** Versioning is enabled via a nested block; tags help organize resources.
-* **Common mistakes / pitfalls:** Bucket name collisions; forgetting versioning block syntax.
-* **Reflection / next steps:** Experiment with different ACLs and encryption options.
+* **Why this demo exists:** Demonstrates adding properties (versioning) and metadata (tags) to AWS resources using Terraform.
+* **Key points:**
+  - Versioning is enabled via a nested block
+  - Tags help organize and identify resources
+* **Common mistakes / pitfalls:**
+  - Bucket name collisions (must be globally unique)
+  - Incorrect versioning block syntax
+* **Reflection / next steps:**
+  - Experiment with different ACLs, encryption, and lifecycle rules. Continue with Phase 1 demos for EC2, Security Groups, and DynamoDB.

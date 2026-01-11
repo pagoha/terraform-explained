@@ -2,9 +2,32 @@
 
 ## Overview
 
-Add a security group to control inbound and outbound traffic for an EC2 instance.
+Add a **security group (SG)** to control inbound and outbound traffic for an EC2 instance.
+This demo shows how Terraform manages AWS networking resources safely.
 
-## Code Example
+---
+
+## Steps
+
+### 1. Navigate to Your Terraform Working Folder
+
+**Windows (PowerShell):**
+
+```powershell
+cd C:\TerraformProjects
+```
+
+**macOS / Linux (Terminal):**
+
+```bash
+cd ~/TerraformProjects
+```
+
+---
+
+### 2. Create Terraform Configuration File
+
+Create a file named `main.tf` with the following content:
 
 ```hcl
 provider "aws" {
@@ -35,24 +58,40 @@ resource "aws_security_group" "example_sg" {
 }
 ```
 
-Commands:
+**Tip:**
+- In real environments, avoid `"0.0.0.0/0"` for SSH; restrict to your IP.
+- This SG can be attached to EC2 instances in later demos.
+
+---
+
+### 3. Run Terraform Workflow
 
 ```bash
-terraform init
-terraform plan
-terraform apply
-terraform destroy
+terraform init    # initialize working directory
+terraform plan    # preview SG creation
+terraform apply   # create the security group
+terraform state list  # verify resource in state
+terraform destroy # remove the security group
 ```
 
-## Expected Output
+**Optional Verification with AWS CLI:**
 
-* Security group created with SSH inbound rule
-* Can attach to EC2 instances in later demos
-* `terraform destroy` removes the security group
+```bash
+aws ec2 describe-security-groups --group-names terraform-demo-sg --query 'SecurityGroups[*].[GroupId,GroupName,IpPermissions]' --output table
+```
+
+Expected output: Shows SG ID, name, and rules.
+
+---
 
 ## Insights
 
-* **Why this demo exists:** Shows how to secure resources and configure networking.
-* **Key points:** Ingress/egress blocks define rules; use restrictive CIDR for real environments.
-* **Common mistakes / pitfalls:** Leaving 0.0.0.0/0 open in production; forgetting to destroy SG before EC2.
-* **Reflection / next steps:** Learn how to attach this SG to EC2 instances in Phase 3.
+* **Why this demo exists:** Shows how to secure resources and manage networking using Terraform.
+* **Key points:**
+  - `ingress` and `egress` blocks define traffic rules
+  - Use restrictive CIDR blocks in production
+* **Common mistakes / pitfalls:**
+  - Leaving SSH open to the world (`0.0.0.0/0`)
+  - Forgetting to destroy SG before EC2, which may block deletions
+* **Reflection / next steps:**
+  - Attach this SG to EC2 instances in later demos. Phase 1 will continue with DynamoDB and more complex resources.
