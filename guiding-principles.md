@@ -7,51 +7,54 @@ The goal is to create a clear, structured, zero-to-hero learning experience for 
 
 ## 1. Clarity Over Cleverness
 
-- Every demo, explanation, and example should prioritize **understanding** first.
-- Avoid overly clever solutions that confuse beginners.
+* Every demo, explanation, and example should prioritize **understanding** first.
+* Avoid overly clever solutions that confuse beginners.
 
 ## 2. Mental Models First
 
-- Concepts and reasoning are explained **before code**.
-- Learners should understand *why* Terraform behaves a certain way, not just *how* to type commands.
+* Concepts and reasoning are explained **before code**.
+* Learners should understand *why* Terraform behaves a certain way, not just *how* to type commands.
 
 ## 3. Safe, Incremental Learning
 
-- Each demo introduces **exactly one major concept**.
-- AWS resources should be safe to create and destroy, minimizing risk.
-- Failures are learning opportunities; they are noted in **Insights**.
+* Each demo introduces **exactly one major concept**.
+* AWS resources should be safe to create and destroy, minimizing risk.
+* Failures are learning opportunities; they are noted in **Insights**.
 
 ## 4. Insights in Every Demo
 
-- Every demo includes an **Insights** section covering:
-  - **Why this demo exists** — the concept or problem being taught
-  - **Key points** — reasoning behind code choices
-  - **Common mistakes / pitfalls** — what could break or confuse
-  - **Reflection / next steps** — questions to explore and connect to future demos
+* Every demo includes an **Insights** section covering:
+
+  * **Why this demo exists** — the concept or problem being taught
+  * **Key points** — reasoning behind code choices
+  * **Common mistakes / pitfalls** — what could break or confuse
+  * **Reflection / next steps** — questions to explore and connect to future demos
 
 ## 5. Incremental, Phased Progression
 
-- Learning is structured in **phases (0–8)**:
-  1. Setup & Orientation
-  2. Single AWS Resources
-  3. Variables, Outputs, Parameterization
-  4. Modules
-  5. Remote State & Backends
-  6. Environments / Workspaces
+* Learning is structured in **phases (0–8)**:
+  0. Setup & Orientation
+
+  1. Single AWS Resources
+  2. Variables & Outputs
+  3. Multiple Resources & Dependencies
+  4. Modules & Reusability
+  5. Environments & Workspaces
+  6. Remote State & Collaboration
   7. Refactoring & Maintenance
   8. Hero Challenges / Optional Advanced
 
-- Each phase builds on the previous, creating a **zero-to-hero journey**.
+* Each phase builds on the previous, creating a **zero-to-hero journey**.
 
 ## 6. Forkable and Reusable
 
-- The repo is designed to be **forked, modified, and shared** safely.
-- Learners and teams can adapt demos to their own projects.
+* The repo is designed to be **forked, modified, and shared** safely.
+* Learners and teams can adapt demos to their own projects.
 
 ## 7. Beginner and Experienced Friendly
 
-- Absolute beginners can follow along from the first demo.
-- Experienced engineers will find value in the **Insights**, safe examples, and best practices.
+* Absolute beginners can follow along from the first demo.
+* Experienced engineers will find value in the **Insights**, safe examples, and best practices.
 
 ---
 
