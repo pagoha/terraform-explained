@@ -1,3 +1,9 @@
+![Terraform](https://img.shields.io/badge/Terraform-1.x-623CE4?logo=terraform&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-Focused-FF9900?logo=amazon-aws&logoColor=white)
+![Learning](https://img.shields.io/badge/Learning-Zero--to--Hero-blue)
+![Infrastructure as Code](https://img.shields.io/badge/IaC-Best%20Practices-2ea44f)
+![Status](https://img.shields.io/badge/Status-Stable-success)
+
 # Terraform Explained – Complete Zero-to-Hero Guide
 
 ## Overview
