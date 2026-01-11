@@ -170,3 +170,5 @@ Refer to `guiding-principles.md`:
 ---
 
 This repository provides a complete, structured, and hands-on path to learning Terraform on AWS. Follow the step-by-step demos and best practices to progress from beginner concepts to advanced multi-environment and production-ready deployments.
+
+Made with ❤️ by [pagoha]
