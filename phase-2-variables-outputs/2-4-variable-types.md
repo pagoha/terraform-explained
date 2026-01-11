@@ -2,11 +2,32 @@
 
 ## Overview
 
-Learn about advanced variable types in Terraform: list, map, bool, number, object.
+Learn about **advanced variable types** in Terraform: `list`, `map`, `bool`, `number`, and `object`.
+This demo shows how structured variables improve reusability and maintainability.
 
-## Code Example
+---
 
-`variables.tf`:
+## Steps
+
+### 1. Navigate to Your Terraform Working Folder
+
+**Windows (PowerShell):**
+
+```powershell
+cd C:\TerraformProjects
+```
+
+**macOS / Linux (Terminal):**
+
+```bash
+cd ~/TerraformProjects
+```
+
+---
+
+### 2. Create Terraform Configuration Files
+
+**Create `variables.tf`:**
 
 ```hcl
 variable "env_tags" {
@@ -25,11 +46,11 @@ variable "enable_versioning" {
 }
 ```
 
-`main.tf`:
+**Create `main.tf`:**
 
 ```hcl
 resource "aws_s3_bucket" "example" {
-  bucket = "terraform-demo-bucket-types"
+  bucket = "terraform-demo-bucket-types" # must be globally unique
   acl    = "private"
 
   versioning {
@@ -40,24 +61,59 @@ resource "aws_s3_bucket" "example" {
 }
 ```
 
-Commands:
+**Tip:** Both files should live in the same working folder. Adjust bucket name to avoid collisions.
+
+---
+
+### 3. Run Terraform Workflow
 
 ```bash
-terraform init
-terraform plan
-terraform apply
-terraform destroy
+terraform init    # initialize working folder
+terraform plan    # preview resource creation with variables
+terraform apply   # create the S3 bucket
+terraform state list  # verify resource in state
+terraform destroy # remove the bucket
 ```
 
-## Expected Output
+**Optional Verification with AWS CLI:**
 
-* Bucket created with versioning enabled and tags applied
-* Changing variable values modifies resource accordingly
-* `terraform destroy` removes the bucket
+```bash
+aws s3 ls
+```
+
+Expected output: Bucket created with versioning enabled and tags applied.
+
+---
+
+### 4. Experimenting with Variable Values
+
+**Override `enable_versioning` via CLI:**
+
+```bash
+terraform apply -var="enable_versioning=false"
+```
+
+**Override `env_tags` via `terraform.tfvars`:**
+
+```hcl
+env_tags = {
+  Environment = "test"
+  Project     = "TerraformDemo"
+}
+```
+
+Terraform updates resources accordingly.
+
+---
 
 ## Insights
 
-* **Why this demo exists:** Demonstrates best practices for reusable configurations using advanced types.
-* **Key points:** Lists, maps, and objects allow structured data; boolean variables toggle features.
-* **Common mistakes / pitfalls:** Incorrect type usage; forgetting to update references.
-* **Reflection / next steps:** Use complex objects for multi-resource modules in Phase 4.
+* **Why this demo exists:** Demonstrates best practices for reusable configurations using advanced variable types.
+* **Key points:**
+  - Maps, lists, and objects allow structured data
+  - Boolean variables can toggle features on/off
+* **Common mistakes / pitfalls:**
+  - Incorrect type usage (e.g., assigning string to bool)
+  - Forgetting to update variable references in resources
+* **Reflection / next steps:**
+  - Use complex objects for multi-resource modules in Phase 4 and advanced configurations.
