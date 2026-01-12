@@ -44,8 +44,15 @@ I intentionally separated **concept understanding** from **hands-on execution** 
 
 ```
 terraform-explained/
-├─ README.md
-├─ guiding-principles.md  # North Star principles
+├─ README.md                  # Root guide and learning roadmap (this file)
+├─ guiding-principles.md      # North Star principles for the repo
+├─ core-concepts/
+│  ├─ README.md               # Core Terraform mental models (read first)
+│  ├─ terraform-state-explained.md
+│  ├─ terraform-init-plan-apply-explained.md
+│  ├─ providers-and-versions-explained.md
+│  ├─ why-modules-exist.md
+│  └─ common-terraform-mistakes.md
 ├─ phase-0-setup-orientation/
 ├─ phase-1-single-aws-resource/
 ├─ phase-2-variables-outputs/
@@ -57,7 +64,8 @@ terraform-explained/
 ├─ phase-8-hero-challenges/
 ├─ .gitignore
 ├─ LICENSE
-└─ README.md
+└─ assets/
+   └─ terraform-zero-to-hero-roadmap.png
 ```
 
 ---
