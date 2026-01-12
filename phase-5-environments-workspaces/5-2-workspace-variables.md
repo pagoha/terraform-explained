@@ -2,11 +2,11 @@
 
 ## Overview
 
-Use workspace-specific variables for different environments.
+Use workspace-specific variables to configure resources differently for each environment.
 
 ## Code Example
 
-`variables.tf`:
+### Variables (`variables.tf`)
 
 ```hcl
 variable "region" {
@@ -20,7 +20,7 @@ variable "bucket_suffix" {
 }
 ```
 
-`main.tf`:
+### Terraform configuration (`main.tf`)
 
 ```hcl
 provider "aws" {
@@ -33,25 +33,42 @@ resource "aws_s3_bucket" "example" {
 }
 ```
 
-Commands:
+### Commands
 
 ```bash
 terraform init
+
+# Apply resources in dev workspace
 terraform workspace select dev
+terraform plan
 terraform apply
+
+# Apply resources in prod workspace
 terraform workspace select prod
+terraform plan
 terraform apply
+
+# Optional: list workspaces
+terraform workspace list
+
+# Destroy resources in current workspace
+terraform destroy
 ```
 
 ## Expected Output
 
-* Buckets created with names reflecting workspace (`dev`, `prod`)
-* Workspace variables allow environment-specific configuration
-* Destroying resources in one workspace doesn’t affect others
+* S3 buckets created with names reflecting the workspace (`dev`, `prod`)
+* Workspace-specific variables allow environment-specific configurations
+* Destroying resources in one workspace does not affect other workspaces
 
 ## Insights
 
-* **Why this demo exists:** Demonstrates variable usage per environment.
-* **Key points:** `terraform.workspace` can be used to dynamically adjust resources.
-* **Common mistakes / pitfalls:** Not using workspace-specific identifiers; overwriting resources.
-* **Reflection / next steps:** Add outputs to reference workspace-specific resources.
+* **Why this demo exists:** Demonstrates how to use workspace-aware variables to manage multiple environments safely.
+* **Key points:**
+  - `terraform.workspace` provides a dynamic identifier per environment
+  - Workspace-specific values help prevent resource name collisions
+  - Apply/destroy operations affect only the current workspace
+* **Common mistakes / pitfalls:**
+  - Forgetting to include workspace identifiers in resource names
+  - Overwriting resources across workspaces by not using dynamic values
+* **Reflection / next steps:** Add outputs for workspace-specific resources; combine with modules to build full multi-environment infrastructure.
