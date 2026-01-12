@@ -2,40 +2,50 @@
 
 ## Overview
 
-Learn how to safely rename a Terraform resource without destroying it.
+Learn how to safely rename a Terraform resource without destroying it, ensuring the infrastructure remains intact and state is consistent.
 
 ## Code Example
 
-```hcl
-# Original resource
-resource "aws_s3_bucket" "old_name" {
-  bucket = "terraform-demo-old"
-}
+Original resource:
 
-# Renamed resource
-resource "aws_s3_bucket" "new_name" {
-  bucket = "terraform-demo-old"
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-```
+    resource "aws_s3_bucket" "old_name" {
+      bucket = "terraform-demo-old"
+    }
 
-Commands:
+Renamed resource:
 
-```bash
-terraform state mv aws_s3_bucket.old_name aws_s3_bucket.new_name
-terraform plan
-terraform apply
-```
+    resource "aws_s3_bucket" "new_name" {
+      bucket = "terraform-demo-old"
+      lifecycle {
+        prevent_destroy = true
+      }
+    }
+
+Rename the resource in state:
+
+    terraform state mv aws_s3_bucket.old_name aws_s3_bucket.new_name
+
+Verify state list:
+
+    terraform state list
+
+Example output:
+
+    aws_s3_bucket.new_name
+
+Plan and apply to confirm no unintended changes:
+
+    terraform plan
+    terraform apply
 
 ## Expected Output
 
 * Resource renamed in state without destruction
 * Terraform plan shows no changes to the actual infrastructure
+* State file now reflects the new resource name
 
 ## Insights
 
-* **Why this demo exists:** Avoid accidental destruction when renaming resources.
-* **Key points:** Use `terraform state mv` for safe renames.
-* **Common mistakes / pitfalls:** Forgetting to prevent destroy; renaming without state updates.
+* **Why this demo exists:** Avoids accidental destruction when renaming resources
+* **Key points:** Always use `terraform state mv` when renaming
+* **Common mistakes / pitfalls:** Forgetting `prevent_destroy`; renaming resource in code without updating state
