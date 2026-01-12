@@ -1,53 +1,60 @@
-# 3-1 S3 Bucket with EC2 Instance
+# 3-1 S3 Bucket and EC2 Instance (Resource Ordering)
 
 ## Overview
 
-Deploy an EC2 instance that interacts with an S3 bucket, demonstrating dependencies between resources.
+Create two AWS resources — an S3 bucket and an EC2 instance — and observe how Terraform controls the order in which resources are created and destroyed.
+
+This demo focuses on **resource ordering and dependencies**, not permissions or data access.
 
 ## Code Example
 
-`main.tf`:
+Create a file named `main.tf`:
 
-```hcl
-provider "aws" {
-  region = "us-east-1"
-}
+    provider "aws" {
+      region = "us-east-1"
+    }
 
-resource "aws_s3_bucket" "example" {
-  bucket = "terraform-demo-bucket-phase3"
-  acl    = "private"
-}
+    resource "aws_s3_bucket" "example" {
+      bucket = "terraform-demo-bucket-phase3"
+      acl    = "private"
+    }
 
-resource "aws_instance" "example" {
-  ami           = "ami-0c55b159cbfafe1f0"  # Amazon Linux 2
-  instance_type = "t2.micro"
+    resource "aws_instance" "example" {
+      ami           = "ami-0c55b159cbfafe1f0"  # Amazon Linux 2 (us-east-1)
+      instance_type = "t2.micro"
 
-  tags = {
-    Name = "EC2WithS3"
-  }
+      tags = {
+        Name = "EC2WithS3"
+      }
 
-  depends_on = [aws_s3_bucket.example]
-}
-```
+      # Force Terraform to create the S3 bucket first
+      depends_on = [aws_s3_bucket.example]
+    }
 
-Commands:
+Run the following commands from the same directory:
 
-```bash
-terraform init
-terraform plan
-terraform apply
-terraform destroy
-```
+    terraform init
+    terraform plan
+    terraform apply
+    terraform destroy
 
 ## Expected Output
 
-* S3 bucket created first, EC2 instance created second
-* `terraform state list` shows both resources
-* `terraform destroy` removes EC2 first, then the bucket
+* `terraform init` initializes the working directory and downloads the AWS provider
+* `terraform plan` shows two resources to be created
+* `terraform apply`:
+  * Creates the S3 bucket first
+  * Creates the EC2 instance second
+* `terraform state list` shows:
+  * aws_s3_bucket.example
+  * aws_instance.example
+* `terraform destroy`:
+  * Destroys the EC2 instance first
+  * Destroys the S3 bucket second
 
 ## Insights
 
-* **Why this demo exists:** Shows how to manage resource dependencies with `depends_on`.
-* **Key points:** Terraform automatically handles many dependencies; explicit `depends_on` is sometimes required.
-* **Common mistakes / pitfalls:** Circular dependencies; forgetting `depends_on` for ordering critical resources.
-* **Reflection / next steps:** Experiment with additional resources like security groups or IAM roles.
+* **Why this demo exists:** Understanding creation and destruction order is critical when managing multiple resources.
+* **Key points:** Terraform usually determines dependencies automatically; `depends_on` is used here to make the order explicit.
+* **Common mistakes / pitfalls:** Assuming `depends_on` grants permissions; creating circular dependencies between resources.
+* **Reflection / next steps:** Add a security group to the EC2 instance to introduce real relationships between resources.

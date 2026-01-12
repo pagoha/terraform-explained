@@ -1,66 +1,73 @@
-# 3-2 Security Group with EC2
+# 3-2 Security Group with EC2 Instance
 
 ## Overview
 
-Attach a security group to an EC2 instance, demonstrating inter-resource relationships.
+Create a security group and attach it to an EC2 instance.
+This demo shows how Terraform automatically understands **relationships between resources** when one resource references another.
 
 ## Code Example
 
-`main.tf`:
+Create a file named `main.tf`:
 
-```hcl
-provider "aws" {
-  region = "us-east-1"
-}
+    provider "aws" {
+      region = "us-east-1"
+    }
 
-resource "aws_security_group" "example_sg" {
-  name        = "terraform-demo-sg-phase3"
-  description = "Allow SSH inbound"
+    resource "aws_security_group" "example_sg" {
+      name        = "terraform-demo-sg-phase3"
+      description = "Allow SSH inbound"
 
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+      ingress {
+        from_port   = 22
+        to_port     = 22
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
 
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
+      egress {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    }
 
-resource "aws_instance" "example" {
-  ami           = "ami-0c55b159cbfafe1f0"
-  instance_type = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.example_sg.id]
+    resource "aws_instance" "example" {
+      ami           = "ami-0c55b159cbfafe1f0"  # Amazon Linux 2 (us-east-1)
+      instance_type = "t2.micro"
 
-  tags = {
-    Name = "EC2WithSG"
-  }
-}
-```
+      # Attach the security group to the EC2 instance
+      vpc_security_group_ids = [aws_security_group.example_sg.id]
 
-Commands:
+      tags = {
+        Name = "EC2WithSecurityGroup"
+      }
+    }
 
-```bash
-terraform init
-terraform plan
-terraform apply
-terraform destroy
-```
+Run the following commands from the same directory:
+
+    terraform init
+    terraform plan
+    terraform apply
+    terraform destroy
 
 ## Expected Output
 
-* Security group created, EC2 instance created with the SG attached
-* Can SSH into instance if key pair is configured
-* `terraform destroy` removes EC2 then SG
+* `terraform init` initializes the working directory
+* `terraform plan` shows two resources to be created
+* `terraform apply`:
+  * Creates the security group
+  * Creates the EC2 instance with the security group attached
+* `terraform state list` shows:
+  * aws_security_group.example_sg
+  * aws_instance.example
+* `terraform destroy`:
+  * Destroys the EC2 instance first
+  * Destroys the security group second
 
 ## Insights
 
-* **Why this demo exists:** Demonstrates how resources can reference each other.
-* **Key points:** `vpc_security_group_ids` links EC2 to SG; Terraform resolves dependencies automatically.
-* **Common mistakes / pitfalls:** Forgetting `depends_on` when necessary; mismatched region or VPC.
-* **Reflection / next steps:** Add multiple SGs or multiple EC2 instances sharing a SG.
+* **Why this demo exists:** Shows how Terraform links resources together through references.
+* **Key points:** Referencing another resource’s attribute automatically creates a dependency.
+* **Common mistakes / pitfalls:** Assuming `depends_on` is always required; forgetting that security groups belong to a VPC.
+* **Reflection / next steps:** Add multiple security groups or reuse one security group across multiple EC2 instances.
