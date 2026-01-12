@@ -44,7 +44,7 @@ Instead:
 - Return to it whenever something feels confusing
 - Use it as a reference as the demos become more advanced
 
-I intentionally separated **concept understanding** from **hands-on execution** demos so learning Terraform feels clear, safe, and predictable — not overwhelming.
+This repository intentionally separates concept understanding from hands-on execution demos so learning Terraform feels clear, safe, and predictable — not overwhelming.
 
 ---
 
