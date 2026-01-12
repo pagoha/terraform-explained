@@ -156,7 +156,7 @@ terraform-explained/
 
 ## Guiding Principles (North Star)
 
-Refer to `guiding-principles.md`:
+Refer to [`guiding-principles.md`](guiding-principles.md) for the North Star principles guiding every demo, phase, and insight in this repo:
 
 * Clarity over cleverness
 * Mental models first
