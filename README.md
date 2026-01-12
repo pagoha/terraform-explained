@@ -188,6 +188,6 @@ Refer to `guiding-principles.md`:
 
 This repository provides a **complete, structured, hands-on path** to learning Terraform on AWS. By following the phased demos, insights, and best practices, learners progress from beginner concepts to advanced, multi-environment, production-ready deployments.
 
-As the demos grow more complex, the **Core Concepts** section remains an essential reference for understanding *why* Terraform behaves the way it does — helping learners make confident, informed decisions rather than memorizing commands.
+Throughout the journey, the **Core Concepts** section remains an essential reference for understanding *why* Terraform behaves the way it does — helping learners make confident, informed decisions rather than just memorizing commands.
 
 Made with ❤️ by [pagoha]
