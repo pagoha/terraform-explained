@@ -2,22 +2,19 @@
 
 ## Overview
 
-Combine workspaces with modules to deploy identical infrastructure in multiple environments.
+Combine workspaces with modules to deploy identical infrastructure across multiple environments.
 
 ## Code Example
 
-`main.tf`:
+main.tf:
 
-```hcl
 module "s3_bucket" {
   source      = "./modules/s3_bucket"
   bucket_name = "terraform-demo-${terraform.workspace}-module"
 }
-```
 
 Commands:
 
-```bash
 terraform init
 terraform workspace select dev
 terraform apply
@@ -25,7 +22,6 @@ terraform workspace select prod
 terraform apply
 terraform output
 terraform destroy
-```
 
 ## Expected Output
 
@@ -35,7 +31,7 @@ terraform destroy
 
 ## Insights
 
-* **Why this demo exists:** Combines modularity with environment separation.
-* **Key points:** Modules and workspaces together create maintainable multi-environment infrastructure.
-* **Common mistakes / pitfalls:** Forgetting to select workspace; module variables not dynamic.
-* **Reflection / next steps:** Scale to multiple modules and resources for full environment setups.
+* **Why this demo exists:** Combines modularity with environment separation
+* **Key points:** Modules and workspaces together create maintainable multi-environment infrastructure
+* **Common mistakes / pitfalls:** Forgetting to select workspace; module variables not dynamic
+* **Reflection / next steps:** Scale to multiple modules and resources for full environment setups
