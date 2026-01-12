@@ -2,70 +2,72 @@
 
 ## Overview
 
-Use variables and outputs inside modules for dynamic, reusable code.
+Learn how to use **variables and outputs inside modules** to create dynamic, reusable Terraform code.
 
 ## Code Example
 
-`modules/s3_bucket/variables.tf`:
+**Module variables (`modules/s3_bucket/variables.tf`):**
 
-```hcl
-variable "bucket_name" { type = string }
-variable "versioning" { type = bool, default = true }
-```
+    variable "bucket_name" {
+      description = "Name of the S3 bucket"
+      type        = string
+    }
 
-`modules/s3_bucket/main.tf`:
+    variable "versioning" {
+      description = "Enable versioning on the bucket"
+      type        = bool
+      default     = true
+    }
 
-```hcl
-resource "aws_s3_bucket" "this" {
-  bucket = var.bucket_name
+**Module resource (`modules/s3_bucket/main.tf`):**
 
-  versioning {
-    enabled = var.versioning
-  }
-}
-```
+    resource "aws_s3_bucket" "this" {
+      bucket = var.bucket_name
 
-`modules/s3_bucket/outputs.tf`:
+      versioning {
+        enabled = var.versioning
+      }
+    }
 
-```hcl
-output "bucket_arn" {
-  value = aws_s3_bucket.this.arn
-}
-```
+**Module outputs (`modules/s3_bucket/outputs.tf`):**
 
-`main.tf`:
+    output "bucket_arn" {
+      description = "The ARN of the S3 bucket"
+      value       = aws_s3_bucket.this.arn
+    }
 
-```hcl
-module "example_bucket" {
-  source     = "./modules/s3_bucket"
-  bucket_name = "terraform-demo-module-002"
-  versioning  = true
-}
+**Root configuration (`main.tf`):**
 
-output "s3_bucket_arn" {
-  value = module.example_bucket.bucket_arn
-}
-```
+    module "example_bucket" {
+      source      = "./modules/s3_bucket"
+      bucket_name = "terraform-demo-module-002"
+      versioning  = true
+    }
 
-Commands:
+    output "s3_bucket_arn" {
+      description = "Expose the ARN from the module"
+      value       = module.example_bucket.bucket_arn
+    }
 
-```bash
-terraform init
-terraform plan
-terraform apply
-terraform output
-terraform destroy
-```
+**Terraform commands:**
+
+    terraform init
+    terraform plan
+    terraform apply
+    terraform output
+    terraform destroy
 
 ## Expected Output
 
-* Module creates versioned S3 bucket
-* Output exposes bucket ARN
-* `terraform destroy` removes the bucket
+* Module creates **versioned S3 bucket**
+* `terraform output` displays the bucket ARN
+* `terraform state list` shows:
+  - `module.example_bucket.aws_s3_bucket.this`
+* `terraform destroy` removes the bucket safely
 
 ## Insights
 
-* **Why this demo exists:** Shows passing variables into modules and exposing outputs.
-* **Key points:** Outputs allow modules to communicate with root module or other modules.
-* **Common mistakes / pitfalls:** Forgetting to output values; mismatch variable types.
-* **Reflection / next steps:** Combine multiple modules to build a full environment.
+* **Why this demo exists:** Demonstrates passing **variables into modules** and exposing **outputs** back to the root module.
+* **Key points:** Outputs allow modules to communicate with the root module or other modules.
+* **Common mistakes / pitfalls:** Forgetting to define outputs; mismatched variable types; not passing required variables.
+* **Reflection / next steps:** Combine multiple modules to build a complete environment with reusable components.
