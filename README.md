@@ -14,6 +14,32 @@ The repository is organized into **phases**, each building on the previous, with
 
 ---
 
+## Read This First (Strongly Recommended)
+
+Before starting the hands-on demos, review the **Core Terraform Concepts** section:
+
+📘 **[`core-concepts/README.md`](core-concepts/README.md)**
+
+This section explains the *mental models* Terraform is built on, including:
+
+- What Terraform state is and why it matters
+- How the `init → plan → apply` workflow actually works
+- Providers, versioning, and why upgrades can be risky
+- Why modules exist and when they help (or hurt)
+- Common Terraform mistakes seen in real-world projects
+
+You **do not need to memorize everything** in this section.
+
+Instead:
+
+- Skim it once before starting Phase 0
+- Return to it whenever something feels confusing
+- Use it as a reference as the demos become more advanced
+
+I intentionally separated **concept understanding** from **hands-on execution** demos so learning Terraform feels clear, safe, and predictable — not overwhelming.
+
+---
+
 ## Repository Structure
 
 ```
@@ -145,5 +171,7 @@ Refer to `guiding-principles.md`:
 ---
 
 This repository provides a **complete, structured, hands-on path** to learning Terraform on AWS. By following the phased demos, insights, and best practices, learners progress from beginner concepts to advanced, multi-environment, production-ready deployments.
+
+As the demos grow more complex, the **Core Concepts** section remains an essential reference for understanding *why* Terraform behaves the way it does — helping learners make confident, informed decisions rather than memorizing commands.
 
 Made with ❤️ by [pagoha]
