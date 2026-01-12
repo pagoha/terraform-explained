@@ -2,31 +2,41 @@
 
 ## Overview
 
-Bring existing AWS resources under Terraform management.
+Bring existing AWS resources under Terraform management safely, without recreating them.
 
 ## Code Example
 
-```hcl
-resource "aws_s3_bucket" "imported" {
-  bucket = "existing-bucket-name"
-}
-```
+Define the resource in Terraform to match the existing infrastructure:
 
-Commands:
+    resource "aws_s3_bucket" "imported" {
+      bucket = "existing-bucket-name"
+    }
 
-```bash
-terraform import aws_s3_bucket.imported existing-bucket-name
-terraform plan
-terraform apply
-```
+Import the existing resource into Terraform state:
+
+    terraform import aws_s3_bucket.imported existing-bucket-name
+
+Verify state list:
+
+    terraform state list
+
+Example output:
+
+    aws_s3_bucket.imported
+
+Plan and apply to confirm no unintended changes:
+
+    terraform plan
+    terraform apply
 
 ## Expected Output
 
 * Existing resource added to Terraform state
-* Plan shows no changes
+* Terraform plan shows no changes
+* Resource can now be managed with Terraform safely
 
 ## Insights
 
-* **Why this demo exists:** Manage pre-existing infrastructure safely.
-* **Key points:** Importing does not modify resources.
-* **Common mistakes / pitfalls:** Resource name mismatches; forgetting to define matching configuration.
+* **Why this demo exists:** Allows management of pre-existing infrastructure without disruption
+* **Key points:** Importing does not modify resources; configuration must match existing resource
+* **Common mistakes / pitfalls:** Resource name mismatches; forgetting to define matching configuration
