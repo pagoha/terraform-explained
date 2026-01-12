@@ -14,6 +14,14 @@ The repository is organized into **phases**, each building on the previous, with
 
 ---
 
+### Who This Repo Is For
+
+- Beginners who want to learn Terraform from the ground up, without skipping foundational concepts
+- Engineers who already know Terraform but want to strengthen mental models and best practices
+- Anyone who wants to deploy infrastructure safely, predictably, and repeatably
+
+---
+
 ## Read This First (Strongly Recommended)
 
 Before starting the hands-on demos, review the **Core Terraform Concepts** section:
