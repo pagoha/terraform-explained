@@ -53,7 +53,7 @@ This repository intentionally separates concept understanding from hands-on exec
 ```
 terraform-explained/
 ├─ README.md                  # Root guide and learning roadmap (this file)
-├─ guiding-principles.md      # North Star principles for the repo
+├─ guiding-principles.md      # North Star principles for this repo
 ├─ core-concepts/
 │  ├─ README.md               # Core Terraform mental models (read first)
 │  ├─ terraform-state-explained.md
