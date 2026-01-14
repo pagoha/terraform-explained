@@ -200,6 +200,7 @@ terraform {
 ---
 
 ## 10. Ignoring Security Best Practices
+
 **Problem:**
 Sensitive data in code (like passwords, API keys, or secrets) can lead to **security breaches**.
 
