@@ -1,6 +1,6 @@
 # Terraform Providers & Versions Explained
 
-Terraform interacts with cloud platforms and other services through **providers**.  
+Terraform interacts with cloud platforms and other services through **providers**.
 Providers are plugins that know how to create, read, update, and delete resources.
 
 Understanding providers and versioning is critical so your Terraform runs reliably and safely.
@@ -14,6 +14,7 @@ Understanding providers and versioning is critical so your Terraform runs reliab
 A provider is a **plugin** that knows how to manage resources for a specific platform.
 
 For example:
+
 - `aws` → AWS resources
 - `azurerm` → Azure resources
 - `google` → GCP resources
@@ -39,6 +40,7 @@ terraform {
 ```
 
 Explanation:
+
 - `source`: Where Terraform should download the provider
 - `version`: Which version of the provider to use
 - `required_version`: Minimum Terraform version required
@@ -50,11 +52,13 @@ Explanation:
 ## Why Provider Versions Matter
 
 Providers change over time. New versions may:
+
 - Add features
 - Fix bugs
 - Change default behavior
 
 Without version constraints:
+
 - Your configuration may break unexpectedly
 - Terraform may behave differently on different machines
 - Collaborators may see different results
@@ -80,6 +84,7 @@ terraform providers
 ```
 
 This shows:
+
 - Providers used in your configuration
 - Installed versions
 - Source locations
