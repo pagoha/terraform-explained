@@ -1,29 +1,18 @@
 {
   "default": true,
-
-  "MD013": {
-    "line_length": 300,
-    "heading_line_length": 300,
-    "code_block_line_length": 300,
-    "tables": false
-  },
-
-  "MD024": {
-    "siblings_only": true
-  },
-
-  "MD026": {
-    "punctuation": ".,;:!"
-  },
-
+  "MD013": { "line_length": 300 },
+  "MD024": { "siblings_only": true },
+  "MD026": { "punctuation": ".,;:!" },
   "MD033": false,
-  "MD040": false,
   "MD004": false,
-
+  "MD040": false,
   "MD001": true,
   "MD003": { "style": "atx" },
   "MD022": true,
   "MD025": true,
   "MD029": { "style": "ordered" },
-  "MD041": true
+  "MD032": true,
+  "MD041": true,
+  "MD047": true,
+  "MD060": true
 }
