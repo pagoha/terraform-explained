@@ -5,7 +5,6 @@ This document highlights **frequent mistakes in Terraform** and how to avoid the
 ---
 
 ## 1. Hardcoding Values
-
 **Problem:**
 Embedding values directly in your configuration (like AMI IDs, regions, or passwords) makes your code **less portable and harder to maintain**.
 
