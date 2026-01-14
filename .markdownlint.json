@@ -20,6 +20,7 @@
 
   "MD001": true,
   "MD003": { "style": "atx" },
+  "MD004": false,
   "MD022": true,
   "MD025": true,
   "MD029": { "style": "ordered" },
