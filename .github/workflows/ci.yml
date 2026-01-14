@@ -1,0 +1,65 @@
+name: CI Pipeline
+
+on:
+  push:
+    paths:
+      - '**/*.tf'
+      - '**/*.md'
+  pull_request:
+    paths:
+      - '**/*.tf'
+      - '**/*.md'
+
+jobs:
+  terraform-lint:
+    name: Terraform Lint & Validate
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.14.3
+
+      - name: Terraform Format Check
+        run: |
+          terraform fmt -check -recursive
+        continue-on-error: false
+
+      - name: Terraform Validate
+        run: |
+          terraform init -backend=false
+          terraform validate
+        continue-on-error: false
+
+  markdown-lint:
+    name: Markdown Lint & Spellcheck
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '21'
+
+      - name: Install MarkdownLint CLI
+        run: npm install -g markdownlint-cli
+
+      - name: Install cspell
+        run: npm install -g cspell
+
+      - name: Run MarkdownLint
+        run: |
+          markdownlint '**/*.md' --ignore node_modules/
+        continue-on-error: false
+
+      - name: Run Spell Check
+        run: |
+          cspell '**/*.md' --config .cspell.json
+        continue-on-error: false
