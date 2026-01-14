@@ -1,5 +1,4 @@
 # Common Terraform Mistakes
-
 This document highlights **frequent mistakes in Terraform** and how to avoid them. Use it as a quick reference for best practices.
 
 ---
