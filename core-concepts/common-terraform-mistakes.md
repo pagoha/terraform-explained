@@ -63,7 +63,7 @@ terraform {
 ## 3. Not Using `terraform fmt` or `terraform validate`
 
 **Problem:**
-Unformatted or invalid Terraform code that leads to errors and poor readability.
+Unformatted or invalid Terraform code leads to errors and poor readability.
 
 **Solution:**
 
