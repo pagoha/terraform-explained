@@ -14,7 +14,16 @@
     "API",
     "kms",
     "cspell",
-    "MD"
+    "MD",
+    "Overcomplicating",
+    "Forkable",
+    "Misconfiguring",
+    "jsonencode",
+    "tfstate",
+    "misconfiguring",
+    "appdb",
+    "parameterizing",
+    "pagoha"
   ],
   "ignorePaths": [
     "node_modules/**",
