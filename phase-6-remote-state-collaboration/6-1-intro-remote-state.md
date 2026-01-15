@@ -1,9 +1,11 @@
 # 6-1 Introduction to Remote State
 
 ## Overview
+
 Learn why remote state is critical for team collaboration, safe deployments, and consistent Terraform management across multiple users.
 
 ## Code Example
+
 Configure an S3 backend with a DynamoDB table for state locking:
 
 terraform {
@@ -25,11 +27,13 @@ terraform state list
 terraform destroy
 
 ## Expected Output
+
 - Terraform state is stored in the specified S3 bucket
 - DynamoDB table enforces locking during operations to prevent conflicts
 - State file is encrypted and shared for safe multi-user collaboration
 
 ## Insights
+
 - **Why this demo exists:** Centralizes Terraform state to avoid local-only limitations and enable team collaboration
 - **Key points:**
   - `dynamodb_table` prevents simultaneous conflicting changes

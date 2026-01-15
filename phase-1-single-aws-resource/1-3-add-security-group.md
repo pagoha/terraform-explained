@@ -59,6 +59,7 @@ resource "aws_security_group" "example_sg" {
 ```
 
 **Tip:**
+
 - In real environments, avoid `"0.0.0.0/0"` for SSH; restrict to your IP.
 - This SG can be attached to EC2 instances in later demos.
 

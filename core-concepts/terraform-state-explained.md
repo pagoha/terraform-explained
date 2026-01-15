@@ -16,11 +16,13 @@ when it changes, and how it’s used**, before you run your first real demo.
 Terraform state is Terraform’s **memory**.
 
 It is how Terraform knows:
+
 - What resources already exist
 - What Terraform created
 - How real infrastructure maps to your code
 
 Without state, Terraform would have no idea whether it needs to:
+
 - Create something new
 - Update something existing
 - Leave something alone
@@ -36,6 +38,7 @@ Terraform state is created and maintained by **Terraform itself**.
 - Terraform is the only system that should manage state
 
 You influence state **indirectly** by:
+
 - Writing configuration (`.tf` files)
 - Running Terraform commands (`apply`, `import`, etc.)
 
@@ -85,6 +88,7 @@ terraform.tfstate
 ```
 
 Local state is:
+
 - Simple
 - Easy to inspect
 - Ideal for learning and solo work
@@ -98,6 +102,7 @@ This repo intentionally starts with local state.
 In team or production environments, state is stored remotely (for example in S3).
 
 Remote state:
+
 - Enables collaboration
 - Prevents concurrent changes
 - Adds locking and safety controls
@@ -184,16 +189,19 @@ Understanding these scenarios prevents fear and surprises.
 ## Why State Must Be Protected
 
 State may contain:
+
 - Resource IDs
 - Infrastructure topology
 - Sensitive values
 
 If state is:
+
 - Deleted → Terraform may recreate everything
 - Modified → Terraform may destroy the wrong resources
 - Committed to Git → secrets may leak
 
 This is why state is usually:
+
 - Ignored by Git
 - Stored remotely in real projects
 - Locked during changes

@@ -7,6 +7,7 @@ Before you start running Terraform demos, this section explains the **core conce
 You **do not need to memorize everything here**.
 
 Instead, think of these documents as:
+
 - A **mental map** for why Terraform behaves the way it does
 - A **reference** you can return to when something feels confusing
 - A way to understand *what problem Terraform is solving* before writing code
@@ -41,6 +42,7 @@ You can read these in order, but it’s okay to jump around.
 Terraform state is the **foundation** of everything Terraform does.
 
 This document explains:
+
 - What state is
 - Why Terraform needs it
 - Why losing or sharing state incorrectly causes problems
@@ -55,6 +57,7 @@ This document explains:
 📄 **[terraform-init-plan-apply-explained.md](terraform-init-plan-apply-explained.md)**
 
 This explains the **Terraform lifecycle**:
+
 - What `terraform init` really does
 - Why `terraform plan` exists
 - Why you should never blindly run `terraform apply`
@@ -70,6 +73,7 @@ After reading this, Terraform stops feeling like magic and starts feeling predic
 Terraform doesn’t create infrastructure by itself — providers do.
 
 This document explains:
+
 - What providers are
 - Why version pinning matters
 - How provider upgrades can break working code
@@ -85,6 +89,7 @@ This knowledge becomes critical as projects grow and teams collaborate.
 Modules are often introduced too early and feel confusing.
 
 This document explains:
+
 - What modules really are
 - When they help (and when they don’t)
 - Why Terraform considers *every folder* a module
@@ -101,6 +106,7 @@ If modules ever feel “overkill,” this will explain why they exist.
 This is a **battle-tested checklist** of mistakes people make in real projects.
 
 It covers:
+
 - Hardcoding values
 - Ignoring state and locking
 - Overusing modules
@@ -117,6 +123,7 @@ It covers:
 Each demo in this repo is intentionally designed to reinforce **one or more concepts** from this section.
 
 As you move through the phases:
+
 - Early demos reinforce **state** and **workflow**
 - Middle phases reinforce **variables, outputs, and dependencies**
 - Later phases reinforce **modules, refactoring, and collaboration**
@@ -130,6 +137,7 @@ If a demo ever feels confusing, come back here — the answer is almost always c
 Terraform is not hard — it’s **misunderstood**.
 
 This repo exists to:
+
 - Remove mystery
 - Build correct mental models
 - Help you deploy infrastructure **confidently and safely**

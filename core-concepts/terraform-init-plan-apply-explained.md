@@ -1,7 +1,7 @@
 # Terraform init / plan / apply Explained
 
 Terraform is powerful, but many beginners simply memorize commands:
-`init`, `plan`, and `apply`.  
+`init`, `plan`, and `apply`.
 When you do that without understanding, mistakes and confusion happen quickly.
 
 This document explains **what each command actually does**, why Terraform separates them, and how they work together to safely manage infrastructure.
@@ -29,6 +29,7 @@ Separation is intentional — it prevents mistakes and ensures transparency.
 `terraform init` prepares a directory to be used with Terraform.
 
 It:
+
 - Downloads required providers (like AWS)
 - Configures backends (state storage)
 - Prepares modules (if any)
@@ -59,6 +60,7 @@ Think of `init` as **setting up your toolbox**, not building anything.
 `terraform plan` previews what Terraform will do.
 
 It:
+
 - Reads your configuration (`.tf` files)
 - Reads current state (`.tfstate`)
 - Compares desired vs actual infrastructure
@@ -89,6 +91,7 @@ Professional workflows require **plan approval before apply**.
 `terraform apply` executes the plan and makes changes real.
 
 It:
+
 - Creates, updates, or deletes resources
 - Updates Terraform state
 - Implements your configuration
@@ -97,7 +100,7 @@ It:
 
 ### Confirmation
 
-By default, Terraform asks for confirmation to prevent accidental changes.  
+By default, Terraform asks for confirmation to prevent accidental changes.
 In automation or CI/CD, this can be handled programmatically.
 
 ---
@@ -123,6 +126,7 @@ Separation provides:
 - **Automation**: CI/CD pipelines can run plan and apply independently
 
 Teams benefit from:
+
 - Generating plans automatically
 - Reviewing changes safely
 - Applying changes consistently
@@ -156,9 +160,9 @@ Each demo in this repo follows the workflow:
 
 ## Key Takeaways
 
-- `init` = prepare Terraform environment  
-- `plan` = preview changes safely  
-- `apply` = make changes real  
-- Terraform’s workflow is **designed for predictability and safety**  
+- `init` = prepare Terraform environment
+- `plan` = preview changes safely
+- `apply` = make changes real
+- Terraform’s workflow is **designed for predictability and safety**
 
 Understanding these commands will make the Phase 0 and Phase 1 demos click immediately.

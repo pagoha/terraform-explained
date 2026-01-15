@@ -1,6 +1,7 @@
 # 6-3 Team Collaboration
 
 ## Overview
+
 Best practices for collaborating with a team on Terraform projects using remote state.
 
 ## Key Guidelines

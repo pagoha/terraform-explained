@@ -20,6 +20,7 @@ Terraform configuration is a collection of `.tf` files in a directory that descr
 Terraform does **not** run files sequentially.
 
 Instead, it:
+
 - Loads *all* `.tf` files in a directory
 - Merges them into a single configuration
 - Uses that configuration to calculate changes
@@ -62,7 +63,7 @@ Those belong to **state**, not configuration.
 ## Configuration vs State
 
 | Configuration (`.tf`) | State (`.tfstate`) |
-|----------------------|-------------------|
+| ---------------------- | ------------------- |
 | Desired intent | Recorded reality |
 | Human-written | Machine-managed |
 | Safe to edit | Never edit manually |
@@ -75,13 +76,13 @@ You change infrastructure by changing **configuration**, not state.
 
 ## How Terraform Uses Configuration
 
-- **`terraform init`**  
+- **`terraform init`**
   Validates configuration, downloads providers/modules
 
-- **`terraform plan`**  
+- **`terraform plan`**
   Compares configuration to state and reality
 
-- **`terraform apply`**  
+- **`terraform apply`**
   Uses configuration as instructions and updates state
 
 Configuration is always the **source of intent**.
@@ -93,6 +94,7 @@ Configuration is always the **source of intent**.
 Terraform ignores file names.
 
 These are equivalent:
+
 - `main.tf`
 - `network.tf`
 - `ec2.tf`
@@ -100,6 +102,7 @@ These are equivalent:
 Terraform loads **all `.tf` files in the directory** as one configuration.
 
 What matters:
+
 - Directory boundaries (modules)
 - Clear separation of concerns
 - Readability for humans
@@ -128,6 +131,7 @@ output "bucket_name" {
 ```
 
 This configuration:
+
 - Declares intent
 - Contains no state
 - Is safe to commit

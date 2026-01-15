@@ -1,9 +1,11 @@
 # 6-2 Remote Backend with Workspaces
 
 ## Overview
+
 Use remote backends in combination with Terraform workspaces to manage isolated environments safely and consistently.
 
 ## Code Example
+
 Configure an S3 backend with a DynamoDB table for locking, using workspace-specific keys:
 
     terraform {
