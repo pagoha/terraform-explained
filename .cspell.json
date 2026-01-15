@@ -1,0 +1,32 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "Terraform",
+    "tfvars",
+    "VPC",
+    "S3",
+    "EC2",
+    "IAM",
+    "AWS",
+    "CLI",
+    "GitHub",
+    "API",
+    "kms",
+    "cspell",
+    "MD"
+  ],
+  "ignorePaths": [
+    "node_modules/**",
+    ".git/**",
+    "**/*.tfstate",
+    "**/*.tfvars",
+    "**/*.tfplan",
+    "**/.terraform/**"
+  ],
+  "ignoreRegExpList": [
+    "/`[^`]*`/",            // Ignore inline code blocks
+    "/\\[.*\\]\\(.*\\)/"    // Ignore Markdown links
+  ],
+  "flagWords": []
+}
